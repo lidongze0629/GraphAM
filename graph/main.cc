@@ -1,6 +1,9 @@
 #include <iostream>
 
+#include "graph/graph_instance.h"
 #include "graph/utils.h"
+
+using graph::GraphInstance;
 
 int main(int argc, char *argv[]) {
 
@@ -12,6 +15,9 @@ int main(int argc, char *argv[]) {
   google::InitGoogleLogging("GRAPH");
 
   LOG(INFO) << "Welcome to Graph Algorithm!";
+  GraphInstance instance;
+  instance.InitWorker();
+  instance.RunWorker();
 
   google::ShutdownGoogleLogging();
 }

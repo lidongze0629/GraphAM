@@ -31,6 +31,6 @@ class GraphInstance {
  private:
   unique_ptr<worker> worker_ptr_;
 };
-} // namespace graph
+}  // namespace graph
 
-#endif // GRAPH_GRAPH_INSTANCE_H_
+#endif  // GRAPH_GRAPH_INSTANCE_H_

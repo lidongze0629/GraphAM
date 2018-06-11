@@ -1,8 +1,8 @@
 #ifndef GRAPH_UTIL_H_
 #define GRAPH_UTIL_H_
 
-#include <memory>
 #include <string.h>
+#include <memory>
 
 #include "glog/logging.h"
 
@@ -16,11 +16,16 @@ namespace gflags = GFLAGS_NAMESPACE;
 namespace gflags = google;
 #endif
 
+typedef unsigned vid_t;
+
 template <typename T>
 using unique_ptr = std::unique_ptr<T>;
 
+template <typename T>
+using Vector = std::vector<T>;
+
 typedef std::string String;
 
-} // namespace graph
+}  // namespace graph
 
-#endif // GRAPH_UTIL_H_
+#endif  // GRAPH_UTIL_H_

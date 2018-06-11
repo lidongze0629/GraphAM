@@ -3,8 +3,8 @@
 namespace graph {
 
 void GraphInstance::InitWorker() {
-  LOG(INFO) << "InitWorker";
   worker_ptr_ = unique_ptr<worker>(new worker());
+  LOG(INFO) << "Init Worker Finished.";
 }
 
 void GraphInstance::RunWorker() {
@@ -12,7 +12,5 @@ void GraphInstance::RunWorker() {
   worker_ptr_->Start();
 }
 
-void GraphInstance::FinalizeWorker() {
-
-}
-} // namespace graph
+void GraphInstance::FinalizeWorker() {}
+}  // namespace graph

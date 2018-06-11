@@ -3,10 +3,10 @@
 
 #include <memory>
 
-#include "graph/utils.h"
-#include "graph/graph_spec.h"
-#include "graph/fragment/i_fragment_loader.h"
 #include "graph/fragment/fragment_loader_factory.h"
+#include "graph/fragment/i_fragment_loader.h"
+#include "graph/graph_spec.h"
+#include "graph/utils.h"
 
 namespace graph {
 
@@ -28,6 +28,6 @@ class worker {
   unique_ptr<IFragment> fragment_;
 };
 
-} // namespace graph
+}  // namespace graph
 
-#endif // GRAPH_WORKER_H_
+#endif  // GRAPH_WORKER_H_

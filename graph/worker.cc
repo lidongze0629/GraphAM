@@ -4,9 +4,7 @@
 
 namespace graph {
 
-void worker::Start() {
-  LoadGraph();
-}
+void worker::Start() { LoadGraph(); }
 
 void worker::LoadGraph() {
   graph_spec_.SetProperty("vertex_file", FLAGS_vfile);
@@ -18,4 +16,4 @@ void worker::LoadGraph() {
   LOG(INFO) << "worker finished loading graph...";
 }
 
-} // namespace graph
+}  // namespace graph

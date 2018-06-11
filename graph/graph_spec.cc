@@ -2,7 +2,7 @@
 
 namespace graph {
 
-void GraphSpec::SetProperty (const String &key, const String &value) {
+void GraphSpec::SetProperty(const String &key, const String &value) {
   if (key == "vertex_file") {
     vertex_file_ = value;
   } else if (key == "edge_file") {
@@ -14,4 +14,4 @@ void GraphSpec::SetProperty (const String &key, const String &value) {
   }
 }
 
-} // namespace graph
+}  // namespace graph

@@ -39,8 +39,8 @@ class GraphSpec {
  private:
   String vertex_file_;
   String edge_file_;
-  String load_strategy_; // ADJ or EVR SNAP
+  String load_strategy_;  // ADJ or EVR SNAP
 };
-} // namespace graph
+}  // namespace graph
 
-#endif // GRAPH_GRAPH_SPEC_H_
+#endif  // GRAPH_GRAPH_SPEC_H_

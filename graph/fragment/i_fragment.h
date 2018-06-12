@@ -1,6 +1,7 @@
 #ifndef GRAPH_FRAGMENT_I_FRAGMENT_H_
 #define GRAPH_FRAGMENT_I_FRAGMENT_H_
 
+#include "graph/iterator_pair.h"
 #include "graph/fragment/edge.h"
 #include "graph/fragment/vertex.h"
 #include "graph/utils.h"
@@ -90,11 +91,19 @@ class IFragment {
     EItImpl *impl;
   };
 
-  virtual void init_presult_on_vertex(Vector<double> *presult) = 0;
+  virtual void init_presult_on_vertex(const vid_t verticesNum) = 0;
 
   virtual vid_t GetVerticesNum() = 0;
 
   virtual void Init(Vector<Vertex> &vertices, Vector<Edge> &edges) = 0;
+
+  virtual IteratorPair<vertex_iterator> vertices() = 0;
+
+  virtual IteratorPair<edge_iterator> GetOutgoingEdges(const vid_t lid) = 0;
+
+  virtual void SetPResult(const Vertex &v, const double &r) = 0;
+
+  virtual double GetPResult(const vid_t lid) = 0;
 };
 }  // namespace graph
 #endif  // GRAPH_FRAGMENT_I_FRAGMENT_H_

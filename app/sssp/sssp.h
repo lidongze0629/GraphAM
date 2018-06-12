@@ -13,6 +13,9 @@ class SSSP : public IApp {
   ~SSSP() {}
 
   void ExecAlgorithm(unique_ptr<IFragment> &fragment, const Vector<String> &query);
+
+  void WriteToFileResult(unique_ptr<IFragment> &fragment,
+                         const String prefix, const Vector<String> &query);
 };
 
 extern "C" IApp *Create() {

@@ -22,6 +22,9 @@ class IApp {
   virtual ~IApp() {}
 
   virtual void ExecAlgorithm(unique_ptr<IFragment> &fragment, const Vector<String> &query) = 0;
+
+  virtual void WriteToFileResult(unique_ptr<IFragment> &fragment,
+                                 const String prefix, const Vector<String> &query) = 0;
 };
 
 typedef IApp *create_t();

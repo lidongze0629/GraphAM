@@ -1,8 +1,8 @@
 #include "graph/fragment/immutable_edgecut_fragment.h"
 
 #include <algorithm>
-namespace graph {
 
+namespace graph {
 void ImmutableEdgecutFragment::Init(Vector<Vertex> &vertices,
                                     Vector<Edge> &edges) {
   InitVertices(vertices);

@@ -62,11 +62,18 @@ void worker::Query() {
   {
     // init presult_on_vertex_
     vid_t tvnum = fragment_->GetVerticesNum();
-    Vector<double> presult_on_vertex(tvnum);
-    fragment_->init_presult_on_vertex(&presult_on_vertex);
+    fragment_->init_presult_on_vertex(tvnum);
   }
 
-  app_->ExecAlgorithm(fragment_, query);
+  {
+    app_->ExecAlgorithm(fragment_, query);
+    LOG(INFO) << "Exec algorithm successful!";
+  }
+
+  {
+    app_->WriteToFileResult(fragment_, graph_spec_.algo_dynamic_lib(), query);
+  }
+
 }
 
 void worker::ParseQueryString(const String &query_str, Vector<String> &query) {

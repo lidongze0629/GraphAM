@@ -23,8 +23,8 @@ void ImmutableEdgecutFragment::InitEdges(Vector<Edge> &edges) {
   std::vector<int> ienum(tvnum_, 0);
 
   for (auto &e : edges) {
-    unsigned u = e.src();
-    unsigned v = e.dst();
+    vid_t u = e.src();
+    vid_t v = e.dst();
     oenum[u]++;
     ienum[v]++;
   }
@@ -38,14 +38,14 @@ void ImmutableEdgecutFragment::InitEdges(Vector<Edge> &edges) {
   ieoffset_[0] = 0;
   oeoffset_[0] = 0;
 
-  for (unsigned i = 0; i < tvnum_; i++) {
+  for (vid_t i = 0; i < tvnum_; i++) {
     ieoffset_[i + 1] = ieoffset_[i] + ienum[i];
     oeoffset_[i + 1] = oeoffset_[i] + oenum[i];
   }
 
   std::vector<std::vector<Edge>::iterator> ieiter(tvnum_), oeiter(tvnum_);
 
-  for (unsigned i = 0; i < tvnum_; i++) {
+  for (vid_t i = 0; i < tvnum_; i++) {
     ieiter[i] = ieoffset_[i] + ie_.begin();
     oeiter[i] = oeoffset_[i] + oe_.begin();
   }
@@ -61,7 +61,7 @@ void ImmutableEdgecutFragment::InitEdges(Vector<Edge> &edges) {
     ieiter[v]++;
   }
 
-  for (unsigned i = 0; i < tvnum_; i++) {
+  for (vid_t i = 0; i < tvnum_; i++) {
     std::sort(
         ie_.begin() + ieoffset_[i], ie_.begin() + ieoffset_[i + 1],
         [](const Edge &e1, const Edge &e2) { return e1.src() < e2.src(); });

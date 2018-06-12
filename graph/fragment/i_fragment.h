@@ -90,6 +90,10 @@ class IFragment {
     EItImpl *impl;
   };
 
+  virtual void init_presult_on_vertex(Vector<double> *presult) = 0;
+
+  virtual vid_t GetVerticesNum() = 0;
+
   virtual void Init(Vector<Vertex> &vertices, Vector<Edge> &edges) = 0;
 };
 }  // namespace graph

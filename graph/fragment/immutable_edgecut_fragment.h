@@ -36,7 +36,13 @@ class ImmutableEdgecutFragment : public IFragment {
   explicit ImmutableEdgecutFragment(const GraphSpec &graph_spec)
       : graph_spec_(graph_spec) {}
 
+  vid_t GetVerticesNum() { return tvnum_; }
+
   void Init(Vector<Vertex> &vertices, Vector<Edge> &edges);
+
+  void init_presult_on_vertex(Vector<double> *presult) {
+    presult_on_vertex_ = presult;
+  }
 
  private:
   void InitVertices(Vector<Vertex> &vertices);

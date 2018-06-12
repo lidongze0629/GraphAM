@@ -9,6 +9,10 @@ void GraphSpec::SetProperty(const String &key, const String &value) {
     edge_file_ = value;
   } else if (key == "load_strategy") {
     load_strategy_ = value;
+  } else if (key == "algoDynamicLib") {
+    algo_dynamic_lib_ = value;
+  } else if (key == "query") {
+    query_ = value;
   } else {
     LOG(ERROR) << "unsupport key_value pair.";
   }

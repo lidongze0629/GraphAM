@@ -15,14 +15,14 @@ void worker::Start() {
   StartTime(LoadGraphTime);
   LoadGraph();
   StopTime(LoadGraphTime);
-  LOG(INFO) << "Load Graph Time: " << GetTimer(LoadGraphTime) << "s";
+  worker_helper_.set_time_load_graph(GetTimer(LoadGraphTime));
 
   LoadAlgoDynamicLib();
 
   StartTime(RunAlgorithmTime); // this time include write result file
   Query();
   StopTime(RunAlgorithmTime);
-  LOG(INFO) << "Run Algorithm Time: : " << GetTimer(RunAlgorithmTime) << "s";
+  worker_helper_.set_time_run_algorithm(GetTimer(RunAlgorithmTime));
 }
 
 void worker::LoadGraph() {
@@ -83,7 +83,10 @@ void worker::Query() {
   {
     app_->WriteToFileResult(fragment_, graph_spec_.algo_dynamic_lib(), query);
   }
+}
 
+void worker::Finalize() {
+  worker_helper_.PrintSummary(worker_helper_);
 }
 
 void worker::ParseQueryString(const String &query_str, Vector<String> &query) {

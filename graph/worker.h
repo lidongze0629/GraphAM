@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "graph/worker_helper.h"
 #include "graph/app/i_app.h"
 #include "graph/fragment/fragment_loader_factory.h"
 #include "graph/fragment/i_fragment_loader.h"
@@ -27,6 +28,8 @@ class worker {
 
   void Query();
 
+  void Finalize();
+
   void ParseQueryString(const String &query_str, Vector<String> &query);
 
  private:
@@ -35,6 +38,8 @@ class worker {
   unique_ptr<IFragment> fragment_;
 
   unique_ptr<IApp> app_;
+
+  WorkerHelper worker_helper_;
 };
 
 }  // namespace graph

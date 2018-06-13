@@ -55,7 +55,7 @@ add_library(graph_core SHARED ${CORE_SRC_FILES})
 target_link_libraries(graph_core ${CMAKE_THREAD_LIBS_INIT} ${GLOG_LIBRARIES}
         ${GFLAGS_LIBRARIES} ${CMAKE_DL_LIBS} ${Boost_LIBRARIES})
 
-set(APP_FILES sssp)
+set(APP_FILES sssp pagerank)
 
 set_target_properties(graph_core PROPERTIES INSTALL_RPATH "$ORIGIN/lib:$ORIGIN/")
 install(TARGETS graph_core DESTINATION ${GRAPE_INSTALL_HOME}/lib)

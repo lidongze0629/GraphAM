@@ -85,6 +85,7 @@ void worker::Query() {
   }
 
   {
+    //todo: Reasonable output parse
     app_->WriteToFileResult(fragment_, FLAGS_output, query);
   }
 }

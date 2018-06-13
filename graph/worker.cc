@@ -9,10 +9,20 @@
 namespace graph {
 
 void worker::Start() {
-  // TODO add times record
+
+  InitTimers();
+
+  StartTime(LoadGraphTime);
   LoadGraph();
+  StopTime(LoadGraphTime);
+  LOG(INFO) << "Load Graph Time: " << GetTimer(LoadGraphTime) << "s";
+
   LoadAlgoDynamicLib();
+
+  StartTime(RunAlgorithmTime); // this time include write result file
   Query();
+  StopTime(RunAlgorithmTime);
+  LOG(INFO) << "Run Algorithm Time: : " << GetTimer(RunAlgorithmTime) << "s";
 }
 
 void worker::LoadGraph() {

@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
   GraphInstance instance;
   instance.InitWorker();
   instance.RunWorker();
+  instance.FinalizeWorker();
 
   google::ShutdownGoogleLogging();
 }

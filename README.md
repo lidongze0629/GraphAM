@@ -2,11 +2,11 @@
 GraphAM, a graph platform to provide c++ API to run graph algorithm.It incorporates various high level graph algorithms such as Single Source Shortest Path(SSSP) to deliver high performance experience.
 
 # Prerequisite
-These codes are implemented and tested with cmake>=2.8 glog and gflags <br>
+These codes are implemented and tested with cmake>=2.8, boost, glog and gflags <br>
 with ubuntu16.04, install glog and gflags is rather simple, just use `apt-get`
 ```
 sudo apt-get update
-sudo apt-get install -y libgoogle-glog-dev libgflags-dev
+sudo apt-get install -y libgoogle-glog-dev libgflags-dev libboost-all-dev
 ```
 
 # compile and Install

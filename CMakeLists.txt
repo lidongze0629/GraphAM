@@ -31,6 +31,10 @@ macro(find_libraries)
 
     # find gflags-------------------------------------------------------------------
     include("cmake/FindGFlags.cmake")
+
+    # find boost--------------------------------------------------------------------
+    find_package(Boost COMPONENTS system filesystem)
+    include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 endmacro(find_libraries)
 
 find_libraries()
@@ -48,7 +52,8 @@ set(_VERSION_PATCH 0)
 file(GLOB_RECURSE CORE_SRC_FILES "graph/*.cc")
 add_library(graph_core SHARED ${CORE_SRC_FILES})
 
-target_link_libraries(graph_core ${CMAKE_THREAD_LIBS_INIT} ${GLOG_LIBRARIES} ${GFLAGS_LIBRARIES} ${CMAKE_DL_LIBS})
+target_link_libraries(graph_core ${CMAKE_THREAD_LIBS_INIT} ${GLOG_LIBRARIES}
+        ${GFLAGS_LIBRARIES} ${CMAKE_DL_LIBS} ${Boost_LIBRARIES})
 
 set(APP_FILES sssp)
 

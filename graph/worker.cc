@@ -2,6 +2,10 @@
 
 #include <dlfcn.h>
 #include <string>
+#include <regex>
+
+#include "boost/algorithm/string/split.hpp"
+#include "boost/algorithm/string/classification.hpp"
 
 #include "graph/flags.h"
 #include "graph/utils.h"
@@ -81,7 +85,7 @@ void worker::Query() {
   }
 
   {
-    app_->WriteToFileResult(fragment_, graph_spec_.algo_dynamic_lib(), query);
+    app_->WriteToFileResult(fragment_, FLAGS_output, query);
   }
 }
 
@@ -90,12 +94,18 @@ void worker::Finalize() {
 }
 
 void worker::ParseQueryString(const String &query_str, Vector<String> &query) {
-  // todo replace with boost split and regex
-  // todo var location is not fianl
-  int pos = query_str.find('(');
-  if (pos != -1) {
-    String location = query_str.substr(pos + 1, query_str.find(')') - 1);
-    query.push_back(location);
+  std::smatch matches;
+  if (std::regex_match(query_str, matches, std::regex(RegexQuery))) {
+    String query_info = matches[1].str();
+    worker_helper_.set_queru_info_(query_info);
+
+    Vector<String> segments;
+    ::boost::split(segments, query_info, ::boost::is_any_of("\t\n\r "), boost::token_compress_on);
+    for (auto q : segments) {
+      query.push_back(q);
+    }
+  }else {
+    LOG(ERROR) << "Regex Match Failed";
   }
 }
 }  // namespace graph

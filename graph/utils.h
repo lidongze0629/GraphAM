@@ -33,6 +33,8 @@ using Vector = std::vector<T>;
 
 typedef std::string String;
 
+const String RegexQuery = R"regex(\((.*)\))regex";
+
 inline std::string GetResultFileName(const String &prefix) {
   std::string path;
   std::time_t t = std::time(0);

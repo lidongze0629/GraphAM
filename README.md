@@ -40,8 +40,10 @@ cmake .. && make
 82  22  11
 28  28  10
 ```
-## Prepare Algorithm
-now GraphAM support `sssp` algorithm, next it will support more graph algorithm. 
+## Algorithm
+#### [Single Source Shortest Path](https://en.wikipedia.org/wiki/Shortest_path_problem#Single-source_shortest_paths)
+#### [PageRank](https://en.wikipedia.org/wiki/PageRank)
+
 ##  Run Command
 ```
 ./graph-engine --vfile <path-to-your-point-file> --efile <path-to-your-edge-file> --query <you-algorithm-query> --algo_dynamic_lib <the-dynamic-library-name-of-algorithm> --output <the-result-output-path>

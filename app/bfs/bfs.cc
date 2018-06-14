@@ -12,7 +12,7 @@
 namespace graph {
 
 void BFS::ExecAlgorithm(unique_ptr<IFragment> &fragment,
-                        shared_ptr<IUDContext> &app_helper_ptr,
+                        shared_ptr<IAppHelper> &app_helper_ptr,
                         const Vector<String> &query) {
 
   // (4 100) means source = 4, depth = 100
@@ -51,7 +51,7 @@ void BFS::ExecAlgorithm(unique_ptr<IFragment> &fragment,
 }
 
 void BFS::WriteToFileResult(unique_ptr<IFragment> &fragment,
-                            shared_ptr<IUDContext> &app_helper_ptr,
+                            shared_ptr<IAppHelper> &app_helper_ptr,
                             const String prefix, const Vector<String> &query) {
   std::string path = GetResultFileName(prefix);
   std::ofstream fout;

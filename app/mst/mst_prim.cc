@@ -8,20 +8,20 @@
 #include <iostream>
 
 #include "graph/utils.h"
-#include "app/mst/mst_context.h"
+#include "app/mst/mst_helper.h"
 #include "graph/fragment/immutable_edgecut_fragment.h"
 
 namespace graph {
 
 void PrimMST::ExecAlgorithm(unique_ptr<IFragment> &fragment,
-                            shared_ptr<IUDContext> &context_ptr,
+                            shared_ptr<IAppHelper> &app_helper_ptr,
                             const Vector<String> &query) {
   ImmutableEdgecutFragment *frag = dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
   vid_t tvnum = frag->GetVerticesNum();
 
-  context_ptr = std::shared_ptr<IUDContext>(new MSTContext());
+  app_helper_ptr = std::shared_ptr<IAppHelper>(new MstHelper());
 
-  auto &rt = std::dynamic_pointer_cast<MSTContext>(context_ptr)->result;
+  auto &rt = std::dynamic_pointer_cast<MstHelper>(app_helper_ptr)->result;
 
   std::vector<bool> visited(tvnum, false);
   std::priority_queue<std::pair<double, std::pair<vid_t, vid_t >>> heap;
@@ -54,13 +54,13 @@ void PrimMST::ExecAlgorithm(unique_ptr<IFragment> &fragment,
 }
 
 void PrimMST::WriteToFileResult(unique_ptr<IFragment> &fragment,
-                                shared_ptr<IUDContext> &context_ptr,
+                                shared_ptr<IAppHelper> &app_helper_ptr,
                                 const String prefix, const Vector<String> &query) {
   std::string path = GetResultFileName(prefix);
   std::ofstream fout;
   fout.open(path.c_str());
 
-  auto &rt = std::dynamic_pointer_cast<MSTContext>(context_ptr)->result;
+  auto &rt = std::dynamic_pointer_cast<MstHelper>(app_helper_ptr)->result;
   for (auto iter : rt) {
     fout << iter << "\n";
   }

@@ -12,7 +12,7 @@
 namespace graph {
 
 void SSSP::ExecAlgorithm(unique_ptr<IFragment> &fragment,
-                         shared_ptr<IUDContext> &context_ptr,
+                         shared_ptr<IAppHelper> &app_helper_ptr,
                          const Vector<String> &query) {
 
   ImmutableEdgecutFragment *frag = dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
@@ -55,7 +55,7 @@ void SSSP::ExecAlgorithm(unique_ptr<IFragment> &fragment,
 }
 
 void SSSP::WriteToFileResult(unique_ptr<IFragment> &fragment,
-                             shared_ptr<IUDContext> &context_ptr,
+                             shared_ptr<IAppHelper> &app_helper_ptr,
                              const String prefix, const Vector<String> &query) {
   std::string path = GetResultFileName(prefix);
   std::ofstream fout;

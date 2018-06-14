@@ -5,7 +5,7 @@
 
 #include "graph/worker_helper.h"
 #include "graph/app/i_app.h"
-#include "graph/app/i_ud_context.h"
+#include "graph/app/i_app_helper.h"
 #include "graph/fragment/fragment_loader_factory.h"
 #include "graph/fragment/i_fragment_loader.h"
 #include "graph/graph_spec.h"
@@ -33,14 +33,14 @@ class worker {
 
   void ParseQueryString(const String &query_str, Vector<String> &query);
 
-  inline shared_ptr<IUDContext> &ud_context() { return ud_contexts; }
+  inline shared_ptr<IAppHelper> &ud_context() { return app_helper_; }
 
  private:
   GraphSpec graph_spec_;
   unique_ptr<IFragmentLoader> fragment_loader_;
   unique_ptr<IFragment> fragment_;
 
-  shared_ptr<IUDContext> ud_contexts;
+  shared_ptr<IAppHelper> app_helper_;
 
   unique_ptr<IApp> app_;
 

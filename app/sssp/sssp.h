@@ -12,9 +12,12 @@ class SSSP : public IApp {
   SSSP() {}
   ~SSSP() {}
 
-  void ExecAlgorithm(unique_ptr<IFragment> &fragment, const Vector<String> &query);
+  void ExecAlgorithm(unique_ptr<IFragment> &fragment,
+                     shared_ptr<IUDContext> &context_ptr,
+                     const Vector<String> &query);
 
   void WriteToFileResult(unique_ptr<IFragment> &fragment,
+                         shared_ptr<IUDContext> &context_ptr,
                          const String prefix, const Vector<String> &query);
 };
 

@@ -11,7 +11,9 @@
 
 namespace graph {
 
-void BFS::ExecAlgorithm(unique_ptr<IFragment> &fragment, const Vector<String> &query) {
+void BFS::ExecAlgorithm(unique_ptr<IFragment> &fragment,
+                        shared_ptr<IUDContext> &app_helper_ptr,
+                        const Vector<String> &query) {
 
   // (4 100) means source = 4, depth = 100
   ImmutableEdgecutFragment *frag = dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
@@ -49,7 +51,8 @@ void BFS::ExecAlgorithm(unique_ptr<IFragment> &fragment, const Vector<String> &q
 }
 
 void BFS::WriteToFileResult(unique_ptr<IFragment> &fragment,
-                       const String prefix, const Vector<String> &query) {
+                            shared_ptr<IUDContext> &app_helper_ptr,
+                            const String prefix, const Vector<String> &query) {
   std::string path = GetResultFileName(prefix);
   std::ofstream fout;
   fout.open(path.c_str());

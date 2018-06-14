@@ -80,13 +80,13 @@ void worker::Query() {
   }
 
   {
-    app_->ExecAlgorithm(fragment_, query);
+    app_->ExecAlgorithm(fragment_, this->ud_context(), query);
     LOG(INFO) << "Exec algorithm successful!";
   }
 
   {
     //todo: Reasonable output parse
-    app_->WriteToFileResult(fragment_, FLAGS_output, query);
+    app_->WriteToFileResult(fragment_, this->ud_context(), FLAGS_output, query);
   }
 }
 

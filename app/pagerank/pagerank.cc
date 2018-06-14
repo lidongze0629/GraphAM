@@ -12,6 +12,7 @@
 namespace graph {
 
 void PageRank::ExecAlgorithm(unique_ptr<IFragment> &fragment,
+                             shared_ptr<IUDContext> &context_ptr,
                              const Vector<String> &query) {
 
   // (0.85 0.01 100 100000) means (alpha eps max_round result_limit)
@@ -76,6 +77,7 @@ void PageRank::ExecAlgorithm(unique_ptr<IFragment> &fragment,
 }
 
 void PageRank::WriteToFileResult(unique_ptr<IFragment> &fragment,
+                                 shared_ptr<IUDContext> &context_ptr,
                                  const String prefix, const Vector<String> &query) {
 
   // todo no result limits, need sort first

@@ -70,7 +70,7 @@ class ImmutableEdgecutFragment : public IFragment {
   void InitVertices(Vector<Vertex> &vertices);
   void InitEdges(Vector<Edge> &edges);
 
-  vid_t ivnum_, ovnum_, tvnum_;
+  vid_t tvnum_;
   Vector<Vertex> vlist_;
 
   Vector<Edge> ie_, oe_;

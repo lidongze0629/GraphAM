@@ -43,6 +43,7 @@ cmake .. && make
 ## Algorithm
 #### [Single Source Shortest Path](https://en.wikipedia.org/wiki/Shortest_path_problem#Single-source_shortest_paths)
 #### [PageRank](https://en.wikipedia.org/wiki/PageRank)
+#### [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)
 
 ##  Run Command
 ```

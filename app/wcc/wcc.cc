@@ -16,6 +16,8 @@ namespace graph {
 void WCC::ExecAlgorithm(unique_ptr<IFragment> &fragment,
                             shared_ptr<IAppHelper> &app_helper_ptr,
                             const Vector<String> &query) {
+  // constraint component is the minimum of the vertex id
+
   ImmutableEdgecutFragment *frag = dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
   vid_t tvnum = frag->GetVerticesNum();
 

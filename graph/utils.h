@@ -41,13 +41,8 @@ const String RegexQuery = R"regex(\((.*)\))regex";
 inline std::string GetResultFileName(const String &prefix) {
   std::string path;
   std::time_t t = std::time(0);
+  path = prefix + "_" + std::to_string(t);
 
-  auto pos = prefix.find('.');
-  if (pos != 0) {
-    path = prefix.substr(0, pos) + "-" + std::to_string(t);
-  } else {
-    path = "default_prefix-" + std::to_string(t);
-  }
   return path;
 }
 

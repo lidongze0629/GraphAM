@@ -101,6 +101,8 @@ class IFragment {
 
   virtual IteratorPair<edge_iterator> GetOutgoingEdges(const vid_t lid) = 0;
 
+  virtual IteratorPair<edge_iterator> GetIncomingEdges(const vid_t lid) = 0;
+
   virtual void SetPResult(const Vertex &v, const double &r) = 0;
 
   virtual double GetPResult(const vid_t lid) = 0;

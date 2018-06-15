@@ -54,6 +54,11 @@ class ImmutableEdgecutFragment : public IFragment {
                                        edge_iterator(new IMEItImpl(oe_.begin() + oeoffset_[lid + 1])));
   }
 
+  IteratorPair<edge_iterator> GetIncomingEdges(const vid_t lid) {
+    return IteratorPair<edge_iterator>(edge_iterator(new IMEItImpl(ie_.begin() + ieoffset_[lid])),
+                                       edge_iterator(new IMEItImpl(ie_.begin() + ieoffset_[lid + 1])));
+  }
+
   void SetPResult(const Vertex &v, const double &r) {
     presult_on_vertex_.at(v.vid()) = r;
   }

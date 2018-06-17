@@ -8,13 +8,19 @@ with ubuntu16.04, install glog and gflags is rather simple, just use `apt-get`
 sudo apt-get update
 sudo apt-get install -y libgoogle-glog-dev libgflags-dev libboost-all-dev
 ```
+# Algorithm
+#### [Single Source Shortest Path](https://en.wikipedia.org/wiki/Shortest_path_problem#Single-source_shortest_paths)
+#### [Weakly Connected Component](http://mathworld.wolfram.com/WeaklyConnectedComponent.html)
+#### [Prim's Minimum Spanning Tree](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
+#### [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)
+#### [PageRank](https://en.wikipedia.org/wiki/PageRank)
 
 # compile and Install
 ```
 git clone <this-repository>
 cd GraphAM
 mkdir build && cd build
-cmake .. && make
+cmake .. && make -j4
 ```
 
 # How to run
@@ -40,12 +46,6 @@ cmake .. && make
 82  22  11
 28  28  10
 ```
-## Algorithm
-#### [Single Source Shortest Path](https://en.wikipedia.org/wiki/Shortest_path_problem#Single-source_shortest_paths)
-#### [Weakly Connected Component](http://mathworld.wolfram.com/WeaklyConnectedComponent.html)
-#### [Prim's Minimum Spanning Tree](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
-#### [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)
-#### [PageRank](https://en.wikipedia.org/wiki/PageRank)
 
 ##  Run Command
 ```
@@ -53,6 +53,12 @@ cmake .. && make
 
 - with sssp algorithm
 ./graph-engine --vfile ./graph_test/twitter.v --efile ./graph_test/twitter.e --query (4) --algo_dynamic_lib libapp_sssp.so --output ./
+```
+
+### Run algorithm test
+```
+# make sure you are in build directory
+../misc/run_and_test.sh
 ```
 
 ## 关于作者

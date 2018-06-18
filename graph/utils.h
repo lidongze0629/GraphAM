@@ -40,6 +40,9 @@ using Vector = std::vector<T>;
 template <typename T>
 using Set = std::set<T>;
 
+template <typename T1, typename T2>
+using Map = std::map<T1, T2>;
+
 typedef std::string String;
 
 inline std::string GetResultFileName(const String &prefix) {

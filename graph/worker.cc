@@ -33,7 +33,7 @@ void worker::LoadGraph() {
   LOG(INFO) << "worker finished loading graph...";
 }
 
-void worker::LoadAlgoDynamicLib() {
+void worker::LoadAlgoDynamicLib(const String &app_name) {
   // TODO ADD EXCEPTION
   void *dynamic_application =
       dlopen(graph_spec_.algo_dynamic_lib().c_str(), RTLD_LAZY);
@@ -60,10 +60,12 @@ void worker::LoadAlgoDynamicLib() {
   }
 
   // create an instance of the class
-  app_ = unique_ptr<IApp>(create_app());
+  unique_ptr<IApp> app_ptr = unique_ptr<IApp>(create_app());
+  apps_.insert(std::make_pair(app_name, std::move(app_ptr)));
 }
 
-void worker::Query() {
+void worker::Query(const String &app_name, const String &prefix) {
+  LOG(INFO) << app_name;
   Vector<String> query;
   ParseQueryString(graph_spec_.query(), query);
 
@@ -75,7 +77,7 @@ void worker::Query() {
 
   StartTime(RunAlgorithmTime);
   {
-    app_->ExecAlgorithm(fragment_, this->ud_context(), query);
+    apps_.at(app_name)->ExecAlgorithm(fragment_, this->ud_context(), query);
     LOG(INFO) << "Exec algorithm successful!";
   }
   StopTime(RunAlgorithmTime);
@@ -83,7 +85,8 @@ void worker::Query() {
 
   {
     // todo: Reasonable output parse
-    app_->WriteToFileResult(fragment_, this->ud_context(), FLAGS_output, query);
+    apps_.at(app_name)->WriteToFileResult(fragment_, this->ud_context(), prefix,
+                                          query);
   }
 }
 

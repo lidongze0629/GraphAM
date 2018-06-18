@@ -6,8 +6,10 @@ twitter_e = loadefile("$GRAPH_TEST/twitter.e")
 load_graph_strategy = loadstrategy("EVformat")
 
 sssp = loadalgorithm("$GRAPH_LIB/libapp_sssp.so")
+pagerank = loadalgorithm("$GRAPH_LIB/libapp_pagerank.so")
 
-sssp.query(4)
+pagerank.query(0.85 0.01 100 100000, "pagerank")
+sssp.query(4, "sssp")
 
 #-------------------------------------------------------------------------------
 # Finally exit

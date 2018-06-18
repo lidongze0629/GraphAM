@@ -77,14 +77,15 @@ void Distributor::RunBatchFile(const String &line) {
       }
       worker_ptr_->graphSpec().SetProperty(
           "algoDynamicLib", ParseWithEnvironmentVariable(algo_location));
-      worker_ptr_->LoadAlgoDynamicLib();
+      worker_ptr_->LoadAlgoDynamicLib(algo_name);
       load_algorithms_.emplace(algo_name);
     }
   } else if (std::regex_match(line, matches, std::regex(RegexQuery))) {
     String app_name = matches[1];
     String query_info = matches[2];
+    String prefix = matches[3];
     worker_ptr_->graphSpec().SetProperty("query", query_info);
-    worker_ptr_->Query();
+    worker_ptr_->Query(app_name, prefix);
   }
 }
 

@@ -24,11 +24,11 @@ class worker {
 
   void LoadGraph();
 
-  void LoadAlgoDynamicLib();
+  void LoadAlgoDynamicLib(const String &app_name);
 
   void Start();
 
-  void Query();
+  void Query(const String &app_name, const String &prefix);
 
   void Finalize();
 
@@ -48,7 +48,7 @@ class worker {
 
   shared_ptr<IAppHelper> app_helper_;
 
-  unique_ptr<IApp> app_;
+  Map<String, unique_ptr<IApp>> apps_;
 
   WorkerHelper worker_helper_;
 };

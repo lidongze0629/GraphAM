@@ -40,7 +40,7 @@ class Distributor {
       R"regex(([^\s]*)\s*=\s*loadstrategy\(\"([^\"]*)\"\))regex";
   const String RegexLoadAlgorithm =
       R"regex(([^\s]*)\s*=\s*loadalgorithm\(\"([^\"]*)\"\))regex";
-  const String RegexQuery = R"regex((.*)\.query\((.*)\))regex";
+  const String RegexQuery = R"regex((.*)\.query\((.*),\s*\"(.*)\"\))regex";
 };
 
 }  // namespace graph

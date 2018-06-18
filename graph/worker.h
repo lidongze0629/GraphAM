@@ -3,14 +3,14 @@
 
 #include <memory>
 
-#include "graph/distributor.h"
-#include "graph/worker_helper.h"
 #include "graph/app/i_app.h"
 #include "graph/app/i_app_helper.h"
+#include "graph/distributor.h"
 #include "graph/fragment/fragment_loader_factory.h"
 #include "graph/fragment/i_fragment_loader.h"
 #include "graph/graph_spec.h"
 #include "graph/utils.h"
+#include "graph/worker_helper.h"
 
 namespace graph {
 
@@ -36,7 +36,7 @@ class worker {
 
   inline shared_ptr<IAppHelper> &ud_context() { return app_helper_; }
 
-  inline GraphSpec& graphSpec() { return graph_spec_; }
+  inline GraphSpec &graphSpec() { return graph_spec_; }
 
  public:
   Distributor distributor_;

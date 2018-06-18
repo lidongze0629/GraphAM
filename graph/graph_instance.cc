@@ -12,7 +12,5 @@ void GraphInstance::RunWorker() {
   worker_ptr_->Start();
 }
 
-void GraphInstance::FinalizeWorker() {
-  worker_ptr_->Finalize();
-}
+void GraphInstance::FinalizeWorker() { worker_ptr_->Finalize(); }
 }  // namespace graph

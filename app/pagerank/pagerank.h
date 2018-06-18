@@ -30,5 +30,5 @@ extern "C" void Destroy(IApp *p) {
   delete p;
 }
 
-} // namespace graph
-#endif // APP_PAGRRANK_PAGERANK_H_
+}  // namespace graph
+#endif  // APP_PAGRRANK_PAGERANK_H_

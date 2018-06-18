@@ -8,16 +8,16 @@
 
 namespace graph {
 
-void Distributor::Init(worker *worker) {
-  worker_ptr_ = worker;
-}
+void Distributor::Init(worker *worker) { worker_ptr_ = worker; }
 
 void Distributor::ParseAndRunAlgorithmFromFile(const String &command_file) {
   // todo add try catch
   Vector<String> batch_file;
 
   FILE *fin = fopen(command_file.c_str(), "r");
-  if (!fin) { LOG(INFO) << "file " << command_file << " open failed!"; }
+  if (!fin) {
+    LOG(INFO) << "file " << command_file << " open failed!";
+  }
 
   while (fgets(buff, LINESIZE, fin) != NULL) {
     String line(buff);
@@ -36,7 +36,7 @@ void Distributor::ParseAndRunAlgorithmFromFile(const String &command_file) {
 }
 
 void Distributor::RunBatchFile(const String &line) {
-  //todo add try catch
+  // todo add try catch
   assert(worker_ptr_ != nullptr);
   std::smatch matches;
   if (std::regex_match(line, matches, std::regex(RegexLoadVertexFile))) {
@@ -44,9 +44,11 @@ void Distributor::RunBatchFile(const String &line) {
       String vertex_file = matches[1];
       String vertex_path = matches[2];
       if (load_graph_vertexs_.find(vertex_file) != load_graph_vertexs_.end()) {
-        LOG(ERROR) << "graph vertex file " << vertex_file << " already exists. ";
+        LOG(ERROR) << "graph vertex file " << vertex_file
+                   << " already exists. ";
       }
-      worker_ptr_->graphSpec().SetProperty("vertex_file", vertex_path);
+      worker_ptr_->graphSpec().SetProperty(
+          "vertex_file", ParseWithEnvironmentVariable(vertex_path));
       load_graph_vertexs_.emplace(vertex_file);
     }
   } else if (std::regex_match(line, matches, std::regex(RegexLoadEdgeFile))) {
@@ -56,7 +58,8 @@ void Distributor::RunBatchFile(const String &line) {
       if (load_graph_edges_.find(edge_file) != load_graph_edges_.end()) {
         LOG(ERROR) << "graph edge file " << edge_file << " already exists. ";
       }
-      worker_ptr_->graphSpec().SetProperty("edge_file", edge_path);
+      worker_ptr_->graphSpec().SetProperty(
+          "edge_file", ParseWithEnvironmentVariable(edge_path));
       load_graph_edges_.emplace(edge_file);
     }
   } else if (std::regex_match(line, matches, std::regex(RegexLoadStragety))) {
@@ -72,16 +75,17 @@ void Distributor::RunBatchFile(const String &line) {
       if (load_algorithms_.find(algo_name) != load_algorithms_.end()) {
         LOG(ERROR) << "Algorithm name " << algo_name << " already exists. ";
       }
-      worker_ptr_->graphSpec().SetProperty("algoDynamicLib", algo_location);
+      worker_ptr_->graphSpec().SetProperty(
+          "algoDynamicLib", ParseWithEnvironmentVariable(algo_location));
       worker_ptr_->LoadAlgoDynamicLib();
       load_algorithms_.emplace(algo_name);
     }
   } else if (std::regex_match(line, matches, std::regex(RegexQuery))) {
     String app_name = matches[1];
     String query_info = matches[2];
-    LOG(INFO) << app_name << ", " << query_info;
+    worker_ptr_->graphSpec().SetProperty("query", query_info);
+    worker_ptr_->Query();
   }
-
 }
 
-} // namespace graph
+}  // namespace graph

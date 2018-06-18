@@ -17,10 +17,11 @@ class IteratorPair {
     this->end_ = ip.end();
     return *this;
   }
+
  private:
   T begin_, end_;
 };
 
-} // namespace graph
+}  // namespace graph
 
-#endif // GRAPH_ITERATOR_PAIR_H_
+#endif  // GRAPH_ITERATOR_PAIR_H_

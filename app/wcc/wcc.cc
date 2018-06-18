@@ -1,35 +1,36 @@
 #include "app/wcc/wcc.h"
 
-#include <memory>
 #include <fstream>
-#include <unordered_set>
-#include <queue>
-#include <vector>
 #include <iostream>
+#include <memory>
+#include <queue>
+#include <unordered_set>
+#include <vector>
 
-#include "graph/utils.h"
 #include "app/wcc/wcc_helper.h"
 #include "graph/fragment/immutable_edgecut_fragment.h"
+#include "graph/utils.h"
 
 namespace graph {
 
 void WCC::ExecAlgorithm(unique_ptr<IFragment> &fragment,
-                            shared_ptr<IAppHelper> &app_helper_ptr,
-                            const Vector<String> &query) {
+                        shared_ptr<IAppHelper> &app_helper_ptr,
+                        const Vector<String> &query) {
   // constraint component is the minimum of the vertex id
 
-  ImmutableEdgecutFragment *frag = dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
+  ImmutableEdgecutFragment *frag =
+      dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
   vid_t tvnum = frag->GetVerticesNum();
 
   app_helper_ptr = std::shared_ptr<IAppHelper>(new WccHelper());
 
   auto &rt = std::dynamic_pointer_cast<WccHelper>(app_helper_ptr)->result;
 
-  std::priority_queue<std::pair<int32_t, vid_t >> heap;
+  std::priority_queue<std::pair<int32_t, vid_t>> heap;
   std::vector<bool> visited(tvnum, false);
 
   for (unsigned i = 0; i < tvnum; i++) {
-    if(visited[i]) continue;
+    if (visited[i]) continue;
 
     heap.push(std::make_pair(-i, i));
     while (!heap.empty()) {
@@ -58,8 +59,8 @@ void WCC::ExecAlgorithm(unique_ptr<IFragment> &fragment,
 }
 
 void WCC::WriteToFileResult(unique_ptr<IFragment> &fragment,
-                                shared_ptr<IAppHelper> &app_helper_ptr,
-                                const String prefix, const Vector<String> &query) {
+                            shared_ptr<IAppHelper> &app_helper_ptr,
+                            const String prefix, const Vector<String> &query) {
   std::string path = GetResultFileName(prefix);
   std::ofstream fout;
   fout.open(path.c_str());
@@ -73,4 +74,4 @@ void WCC::WriteToFileResult(unique_ptr<IFragment> &fragment,
   LOG(INFO) << "result output: " << path;
 }
 
-} // namespace graph
+}  // namespace graph

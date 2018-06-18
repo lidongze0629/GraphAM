@@ -1,11 +1,11 @@
 #ifndef GRAPH_FRAGMENT_IMMUTABLE_EDGECUT_FRAGMENT_H_
 #define GRAPH_FRAGMENT_IMMUTABLE_EDGECUT_FRAGMENT_H_
 
-#include "graph/iterator_pair.h"
 #include "graph/fragment/edge.h"
 #include "graph/fragment/i_fragment.h"
 #include "graph/fragment/vertex.h"
 #include "graph/graph_spec.h"
+#include "graph/iterator_pair.h"
 #include "graph/utils.h"
 
 namespace graph {
@@ -50,13 +50,15 @@ class ImmutableEdgecutFragment : public IFragment {
   }
 
   IteratorPair<edge_iterator> GetOutgoingEdges(const vid_t lid) {
-    return IteratorPair<edge_iterator>(edge_iterator(new IMEItImpl(oe_.begin() + oeoffset_[lid])),
-                                       edge_iterator(new IMEItImpl(oe_.begin() + oeoffset_[lid + 1])));
+    return IteratorPair<edge_iterator>(
+        edge_iterator(new IMEItImpl(oe_.begin() + oeoffset_[lid])),
+        edge_iterator(new IMEItImpl(oe_.begin() + oeoffset_[lid + 1])));
   }
 
   IteratorPair<edge_iterator> GetIncomingEdges(const vid_t lid) {
-    return IteratorPair<edge_iterator>(edge_iterator(new IMEItImpl(ie_.begin() + ieoffset_[lid])),
-                                       edge_iterator(new IMEItImpl(ie_.begin() + ieoffset_[lid + 1])));
+    return IteratorPair<edge_iterator>(
+        edge_iterator(new IMEItImpl(ie_.begin() + ieoffset_[lid])),
+        edge_iterator(new IMEItImpl(ie_.begin() + ieoffset_[lid + 1])));
   }
 
   void SetPResult(const Vertex &v, const double &r) {
@@ -67,9 +69,7 @@ class ImmutableEdgecutFragment : public IFragment {
     presult_on_vertex_.at(lid) = r;
   }
 
-  double GetPResult(const vid_t lid) {
-    return presult_on_vertex_.at(lid);
-  }
+  double GetPResult(const vid_t lid) { return presult_on_vertex_.at(lid); }
 
  private:
   void InitVertices(Vector<Vertex> &vertices);

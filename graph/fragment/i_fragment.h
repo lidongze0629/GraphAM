@@ -1,9 +1,9 @@
 #ifndef GRAPH_FRAGMENT_I_FRAGMENT_H_
 #define GRAPH_FRAGMENT_I_FRAGMENT_H_
 
-#include "graph/iterator_pair.h"
 #include "graph/fragment/edge.h"
 #include "graph/fragment/vertex.h"
+#include "graph/iterator_pair.h"
 #include "graph/utils.h"
 
 namespace graph {

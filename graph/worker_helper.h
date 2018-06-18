@@ -13,9 +13,11 @@ class WorkerHelper {
 
   inline void set_time_load_graph(const double t) { time_load_graph_ = t; }
 
-  inline void set_time_run_algorithm(const double t) { time_run_algorithm_ = t; }
+  inline void set_time_run_algorithm(const double t) {
+    time_run_algorithm_ = t;
+  }
 
-  inline void set_queru_info_(const String q) { query_info_ = q; }
+  inline void set_query_info_(const String q) { query_info_ = q; }
 
   inline double get_time_load_graph() const { return time_load_graph_; }
 
@@ -31,4 +33,4 @@ class WorkerHelper {
   String query_info_;
 };
 }
-#endif // GRAPH_WORKER_HELPER_H_
+#endif  // GRAPH_WORKER_HELPER_H_

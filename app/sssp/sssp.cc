@@ -1,21 +1,21 @@
 #include "app/sssp/sssp.h"
 
+#include <fstream>
+#include <iostream>
 #include <limits>
 #include <queue>
 #include <vector>
-#include <fstream>
-#include <iostream>
 
-#include "graph/utils.h"
 #include "graph/fragment/immutable_edgecut_fragment.h"
+#include "graph/utils.h"
 
 namespace graph {
 
 void SSSP::ExecAlgorithm(unique_ptr<IFragment> &fragment,
                          shared_ptr<IAppHelper> &app_helper_ptr,
                          const Vector<String> &query) {
-
-  ImmutableEdgecutFragment *frag = dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
+  ImmutableEdgecutFragment *frag =
+      dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
   auto vertices = frag->vertices();
   for (auto &v : vertices) {
     frag->SetPResult(v, std::numeric_limits<double>::max());
@@ -45,7 +45,7 @@ void SSSP::ExecAlgorithm(unique_ptr<IFragment> &fragment,
       vid_t v = iter.dst();
       double vdist = frag->GetPResult(v);
       double udist = frag->GetPResult(u);
-      if(vdist > udist + len) {
+      if (vdist > udist + len) {
         vdist = udist + len;
         frag->SetPResult(v, vdist);
         heap.push(std::make_pair(-vdist, v));
@@ -61,7 +61,8 @@ void SSSP::WriteToFileResult(unique_ptr<IFragment> &fragment,
   std::ofstream fout;
   fout.open(path.c_str());
 
-  ImmutableEdgecutFragment *frag = dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
+  ImmutableEdgecutFragment *frag =
+      dynamic_cast<ImmutableEdgecutFragment *>(fragment.get());
   vid_t tvnum = frag->GetVerticesNum();
   for (unsigned i = 0; i < tvnum; i++) {
     fout << i << "\t" << frag->GetPResult(i) << "\n";

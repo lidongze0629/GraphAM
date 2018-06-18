@@ -4,9 +4,9 @@
 #include <memory>
 #include <string>
 
-#include "graph/utils.h"
 #include "graph/app/i_app_helper.h"
 #include "graph/fragment/i_fragment.h"
+#include "graph/utils.h"
 
 namespace graph {
 /** App Interface.
@@ -28,7 +28,8 @@ class IApp {
 
   virtual void WriteToFileResult(unique_ptr<IFragment> &fragment,
                                  shared_ptr<IAppHelper> &app_helper_ptr,
-                                 const String prefix, const Vector<String> &query) = 0;
+                                 const String prefix,
+                                 const Vector<String> &query) = 0;
 };
 
 typedef IApp *create_t();

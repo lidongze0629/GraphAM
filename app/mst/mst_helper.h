@@ -15,4 +15,4 @@ class MstHelper : public IAppHelper {
   std::vector<Edge> result;
 };
 
-#endif // APP_MST_MST_HELPER_H_
+#endif  // APP_MST_MST_HELPER_H_

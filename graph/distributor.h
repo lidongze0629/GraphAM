@@ -40,9 +40,9 @@ class Distributor {
       R"regex(([^\s]*)\s*=\s*loadstrategy\(\"([^\"]*)\"\))regex";
   const String RegexLoadAlgorithm =
       R"regex(([^\s]*)\s*=\s*loadalgorithm\(\"([^\"]*)\"\))regex";
-  const String RegexQuery = R"regex((.*)\.query\((.*),\s*\"(.*)\"\))regex";
+  const String RegexQuery = R"regex((.*)\.query\((.*)\))regex";
 };
 
-} // namespace graph
+}  // namespace graph
 
-#endif // GRAPH_DIRTRIBUTOR_H_
+#endif  // GRAPH_DIRTRIBUTOR_H_

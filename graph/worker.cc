@@ -64,6 +64,16 @@ void worker::LoadAlgoDynamicLib(const String &app_name) {
   apps_.insert(std::make_pair(app_name, std::move(app_ptr)));
 }
 
+void worker::UnLoadAlgoDynamicLib(const String &app_name) {
+  apps_.erase(app_name);
+  LOG(INFO) << "unload application " << app_name << " successful.";
+}
+
+void worker::UnLoadGraph() {
+  fragment_.reset();
+  LOG(INFO) << "unload graph successful. ";
+}
+
 void worker::Query(const String &app_name, const String &prefix) {
   LOG(INFO) << app_name;
   Vector<String> query;

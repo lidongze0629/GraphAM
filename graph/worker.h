@@ -26,6 +26,10 @@ class worker {
 
   void LoadAlgoDynamicLib(const String &app_name);
 
+  void UnLoadAlgoDynamicLib(const String &app_name);
+
+  void UnLoadGraph();
+
   void Start();
 
   void Query(const String &app_name, const String &prefix);

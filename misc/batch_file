@@ -5,11 +5,44 @@ twitter_e = loadefile("$GRAPH_TEST/twitter.e")
 
 load_graph_strategy = loadstrategy("EVformat")
 
+# test sssp pagerank sssp bfs
 sssp = loadalgorithm("$GRAPH_LIB/libapp_sssp.so")
 pagerank = loadalgorithm("$GRAPH_LIB/libapp_pagerank.so")
+bfs = loadalgorithm("$GRAPH_LIB/libapp_bfs.so")
 
+# query
 pagerank.query(0.85 0.01 100 100000, "pagerank")
 sssp.query(4, "sssp")
+bfs.query(1 4, "bfs")
+
+# unload app & graph
+unloadapp(sssp)
+unloadapp(pagerank)
+unloadapp(bfs)
+unloadgraph(twitter_v, twitter_e)
+
+# test wcc
+p2p-31_v = loadvfile("$GRAPH_TEST/p2p-31.v")
+p2p-31_e = loadefile("$GRAPH_TEST/p2p-31.e")
+
+load_graph_strategy = loadstrategy("EVformat")
+wcc = loadalgorithm("$GRAPH_LIB/libapp_wcc.so")
+wcc.query(, "wcc")
+
+# unload app & graph
+unloadapp(wcc)
+unloadgraph(p2p-31_v, p2p-31_e)
+
+# test mst
+test_v = loadvfile("$GRAPH_TEST/test.v")
+test_e = loadefile("$GRAPH_TEST/test.e")
+
+load_graph_strategy = loadstrategy("EVformat")
+mst_prim = loadalgorithm("$GRAPH_LIB/libapp_mst_prim.so")
+mst_prim.query(, "mst")
+
+unloadapp(mst_prim)
+unloadgraph(test_v, test_e)
 
 #-------------------------------------------------------------------------------
 # Finally exit

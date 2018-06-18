@@ -86,6 +86,19 @@ void Distributor::RunBatchFile(const String &line) {
     String prefix = matches[3];
     worker_ptr_->graphSpec().SetProperty("query", query_info);
     worker_ptr_->Query(app_name, prefix);
+  } else if (std::regex_match(line, matches, std::regex(RegexUnloadApp))) {
+    String app_name = matches[1];
+    if (load_algorithms_.find(app_name) == load_algorithms_.end()) {
+      LOG(ERROR) << app_name << " does not find. ";
+    }
+    worker_ptr_->UnLoadAlgoDynamicLib(app_name);
+    load_algorithms_.erase(app_name);
+  } else if (std::regex_match(line, matches, std::regex(RegexUnloadGraph))) {
+    String graph_v_file = matches[1];
+    String graph_e_file = matches[2];
+    load_graph_vertexs_.erase(graph_v_file);
+    load_graph_edges_.erase(graph_e_file);
+    worker_ptr_->UnLoadGraph();
   }
 }
 

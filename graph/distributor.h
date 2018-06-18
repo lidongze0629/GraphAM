@@ -41,6 +41,8 @@ class Distributor {
   const String RegexLoadAlgorithm =
       R"regex(([^\s]*)\s*=\s*loadalgorithm\(\"([^\"]*)\"\))regex";
   const String RegexQuery = R"regex((.*)\.query\((.*),\s*\"(.*)\"\))regex";
+  const String RegexUnloadApp = R"regex(unloadapp\((.*)\))regex";
+  const String RegexUnloadGraph = R"regex(unloadgraph\((.*),\s(.*)\))regex";
 };
 
 }  // namespace graph

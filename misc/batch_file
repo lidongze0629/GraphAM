@@ -1,0 +1,14 @@
+############################## Immutable Test ##################################
+# Load graph & app
+twitter_v = loadvfile("$GRAPH_TEST/twitter.v")
+twitter_e = loadefile("&GRAPH_TEST/twitter.e")
+
+load_graph_strategy = loadstrategy("EVformat")
+
+sssp = loadalgorithm("$GRAPH_LIB/libapp_sssp.so")
+
+sssp.query(4)
+
+#-------------------------------------------------------------------------------
+# Finally exit
+exit

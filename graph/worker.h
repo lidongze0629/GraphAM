@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "graph/distributor.h"
 #include "graph/worker_helper.h"
 #include "graph/app/i_app.h"
 #include "graph/app/i_app_helper.h"
@@ -34,6 +35,11 @@ class worker {
   void ParseQueryString(const String &query_str, Vector<String> &query);
 
   inline shared_ptr<IAppHelper> &ud_context() { return app_helper_; }
+
+  inline GraphSpec& graphSpec() { return graph_spec_; }
+
+ public:
+  Distributor distributor_;
 
  private:
   GraphSpec graph_spec_;

@@ -5,6 +5,7 @@
 #include <ctime>
 #include <memory>
 #include <sys/time.h>
+#include <set>
 
 #include "glog/logging.h"
 
@@ -33,6 +34,9 @@ using shared_ptr = std::shared_ptr<T>;
 
 template <typename T>
 using Vector = std::vector<T>;
+
+template <typename T>
+using Set = std::set<T>;
 
 typedef std::string String;
 

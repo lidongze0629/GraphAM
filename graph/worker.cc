@@ -16,7 +16,10 @@ void worker::Start() {
 
   InitTimers();
 
-  StartTime(LoadGraphTime);
+  distributor_.Init(this);
+  distributor_.ParseAndRunAlgorithmFromFile(FLAGS_command_file);
+
+  /*StartTime(LoadGraphTime);
   LoadGraph();
   StopTime(LoadGraphTime);
   worker_helper_.set_time_load_graph(GetTimer(LoadGraphTime));
@@ -26,16 +29,10 @@ void worker::Start() {
   StartTime(RunAlgorithmTime); // this time include write result file
   Query();
   StopTime(RunAlgorithmTime);
-  worker_helper_.set_time_run_algorithm(GetTimer(RunAlgorithmTime));
+  worker_helper_.set_time_run_algorithm(GetTimer(RunAlgorithmTime));*/
 }
 
 void worker::LoadGraph() {
-  graph_spec_.SetProperty("vertex_file", FLAGS_vfile);
-  graph_spec_.SetProperty("edge_file", FLAGS_efile);
-  graph_spec_.SetProperty("load_strategy", "EVformat");
-  graph_spec_.SetProperty("algoDynamicLib", FLAGS_algo_dynamic_lib);
-  graph_spec_.SetProperty("query", FLAGS_query);
-
   fragment_loader_ = FragmentLoaderFactory::CreateFragmentLoader(graph_spec_);
   fragment_loader_->LoadFragment(fragment_, graph_spec_);
   LOG(INFO) << "worker finished loading graph...";

@@ -6,3 +6,4 @@ DEFINE_string(output, "default_output_file", "result output file");
 DEFINE_string(algo_dynamic_lib, "libapp_wcc.so",
               "algorithm dynamic library location");
 DEFINE_string(query, "()", "algorithm query. eg: sssp source vertex");
+DEFINE_string(command_file, "../misc/batch_file", "all instruction to run graph algorithm");

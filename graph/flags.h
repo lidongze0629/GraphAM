@@ -8,5 +8,7 @@ DECLARE_string(efile);
 DECLARE_string(output);
 DECLARE_string(algo_dynamic_lib);
 DECLARE_string(query);
+DECLARE_string(command_file);
+
 
 #endif  // GRAPH_FLAGS_H_

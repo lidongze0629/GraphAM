@@ -1,10 +1,5 @@
 #!/bin/bash -e
 
-# example ${0} -a libapp_sssp.so -v ./graph_test/twitter.v -e ./graph_test/twitter.e -o ./sssp_ -q '(4 63)'
-# example ${0} -a libapp_pagerank.so -v ./graph_test/twitter.v -e ./graph_test/twitter.e -o ./pagerank_ -q '(0.85 0.01 100 100000)'
-# example ${0} -a libapp_bfs.so -v ./graph_test/twitter.v -e ./graph_test/twitter.e -o ./bfs_ -q '(1 4)'
-# example ${0} for mst
-
 help(){
     echo "# ----------------------------------------"
     echo "#          run graph algo                 "
@@ -41,29 +36,7 @@ get-graph-data(){
 
 
 run-test(){
-
-    # sssp
-    cmd="./graph-engine --vfile ${GRAPH_DATA}/twitter.v --efile ${GRAPH_DATA}/twitter.e --query '(4)' --output ${GRAPH_LIB}/sssp_ --algo_dynamic_lib libapp_sssp.so"
-    echo $cmd
-    eval $cmd
-
-    # wcc
-    cmd="./graph-engine --vfile ${GRAPH_DATA}/p2p-31.v --efile ${GRAPH_DATA}/p2p-31.e --query '()' --output ${GRAPH_LIB}/wcc_ --algo_dynamic_lib libapp_wcc.so"
-    echo $cmd
-    eval $cmd
-
-    # bfs
-    cmd="./graph-engine --vfile ${GRAPH_DATA}/twitter.v --efile ${GRAPH_DATA}/twitter.e --query '(1 4)' --output ${GRAPH_LIB}/bfs_ --algo_dynamic_lib libapp_bfs.so"
-    echo $cmd
-    eval $cmd
-
-    # prim's mst
-    cmd="./graph-engine --vfile ${GRAPH_DATA}/test.v --efile ${GRAPH_DATA}/test.e --query '()' --output ${GRAPH_LIB}/mst_ --algo_dynamic_lib libapp_mst_prim.so"
-    echo $cmd
-    eval $cmd
-
-    # pagerank
-    cmd="./graph-engine --vfile ${GRAPH_DATA}/twitter.v --efile ${GRAPH_DATA}/twitter.e --query '(0.85 0.01 100 100000)' --output ${GRAPH_LIB}/pagerank_ --algo_dynamic_lib libapp_pagerank.so"
+    cmd="./graph-engine --command_file ../misc/batch_file"
     echo $cmd
     eval $cmd
 }
@@ -73,7 +46,7 @@ Verify(){
   if ! cmp tmp.res ${2} >/dev/null 2>&1
   then
     echo "[GRAPH_TEST] failed to pass ${3} check."
-    rm tmp.res
+    # rm tmp.res
     exit 1
   else
     echo "passed ${3} test."
@@ -120,7 +93,7 @@ run-test
 
 Verify sssp $GRAPH_DATA/twitter-sssp-4.dat sssp
 Verify bfs $GRAPH_DATA/twitter-bfs.dat bfs
-Verify pagerank $GRAPH_DATA/twitter-pagrank.dat pagerank
 Verify mst $GRAPH_DATA/test-mst.dat prim_mst
 Verify wcc $GRAPH_DATA/p2p-31-wcc.dat wcc
+Verify pagerank $GRAPH_DATA/twitter-pagrank.dat pagerank
 

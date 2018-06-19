@@ -3,10 +3,12 @@
 
 #include "graph/utils.h"
 #include "graph/utils/InStorage.h"
+#include "graph/utils/OutStorage.h"
 
 namespace graph {
 
 class InStorage;
+class OutStorage;
 
 class Edge {
  public:
@@ -47,6 +49,7 @@ class Edge {
   friend std::istream &operator>>(std::istream &in, const Edge &e);
 
   friend InStorage &operator<<(InStorage &inStorage, const Edge &e);
+  friend OutStorage &operator>>(OutStorage &outStorage, Edge &e);
 };
 
 inline std::ostream &operator<<(std::ostream &out, const Edge &e) {
@@ -58,6 +61,12 @@ inline InStorage &operator<<(InStorage &inStorage, const Edge &e) {
   inStorage << e.src_<< e.dst_ << e.data_;
   return inStorage;
 }
+
+inline OutStorage &operator>>(OutStorage &outStorage, Edge &e) {
+  outStorage >> e.src_ >> e.dst_ >> e.data_;
+  return outStorage;
+}
+
 }
 
 #endif  // GRAPH_FRAGMENT_EDGE_H

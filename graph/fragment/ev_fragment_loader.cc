@@ -8,16 +8,24 @@ namespace graph {
 
 void EVFragmentLoader::LoadFragment(unique_ptr<IFragment> &fragment,
                                     const GraphSpec &graph_spec) {
-  Vector<Edge> edges;
-  Vector<Vertex> vertices;
 
-  LoadVfile(vertices, graph_spec.vertex_file());
-  LoadEfile(edges, graph_spec.edge_file());
+  fragment.reset();
 
-  fragment = FragmentFactory::CreateFragment(graph_spec);
-  fragment->Init(vertices, edges);
-  if (FLAGS_serialize) {
-    fragment->Serialize(graph_spec.graph_name());
+  if (FLAGS_deserialize) {
+    fragment = FragmentFactory::CreateFragment(graph_spec);
+    fragment->Deserialize(graph_spec.graph_name());
+  } else {
+    Vector<Edge> edges;
+    Vector<Vertex> vertices;
+
+    LoadVfile(vertices, graph_spec.vertex_file());
+    LoadEfile(edges, graph_spec.edge_file());
+
+    fragment = FragmentFactory::CreateFragment(graph_spec);
+    fragment->Init(vertices, edges);
+    if (FLAGS_serialize) {
+      fragment->Serialize(graph_spec.graph_name());
+    }
   }
 }
 

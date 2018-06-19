@@ -2,11 +2,13 @@
 #define GRAPH_FRAGMENT_VERTEX_H_
 
 #include "graph/utils/InStorage.h"
+#include "graph/utils/OutStorage.h"
 #include "graph/utils.h"
 
 namespace graph {
 
 class InStorage;
+class OutStorage;
 
 class Vertex {
  public:
@@ -37,11 +39,18 @@ class Vertex {
   friend std::istream &operator>>(std::istream &in, const Vertex &v);
 
   friend InStorage &operator<<(InStorage &storagem, const Vertex &v);
+  friend OutStorage &operator>>(OutStorage &outStorage, Vertex &v);
 };
 
 inline InStorage &operator<<(InStorage &storage, const Vertex &v) {
   storage << v.vid_;
   storage << v.data_;
+  return storage;
+}
+
+inline OutStorage &operator>>(OutStorage &storage, Vertex &v) {
+  storage >> v.vid_;
+  storage >> v.data_;
   return storage;
 }
 

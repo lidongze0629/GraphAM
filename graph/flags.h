@@ -5,5 +5,6 @@
 
 DECLARE_string(command_file);
 DECLARE_bool(serialize);
+DECLARE_bool(deserialize);
 
 #endif  // GRAPH_FLAGS_H_

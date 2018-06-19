@@ -104,6 +104,42 @@ void ImmutableEdgecutFragment::Serialize(const String &prefix) {
   is.Clear();
 
   fclose(fin);
+  LOG(INFO) << "Output serialize file: " << serialize_filename;
+}
+
+void ImmutableEdgecutFragment::Deserialize(const String &prefix) {
+  String serialize_filename = prefix + "/_serialize";
+  LOG(INFO) << "begin load serialize file: " << serialize_filename;
+  FILE *fin = fopen(serialize_filename.c_str(), "r");
+  if (!fin) {LOG(ERROR) << "Open serialize file failed. "; }
+
+  OutStorage os;
+
+  this->ReadStorage(os, fin);
+  os >> vlist_;
+  os.Clear();
+
+  this->ReadStorage(os, fin);
+  os >> ie_;
+  os.Clear();
+
+  this->ReadStorage(os, fin);
+  os >> oe_;
+  os.Clear();
+
+  this->ReadStorage(os, fin);
+  os >> ieoffset_;
+  os.Clear();
+
+  this->ReadStorage(os, fin);
+  os >> oeoffset_;
+  os.Clear();
+
+  this->ReadStorage(os, fin);
+  os >> tvnum_;
+  os.Clear();
+
+  fclose(fin);
 }
 
 void ImmutableEdgecutFragment::WriteStorage(InStorage &inStorage, FILE *fin) {
@@ -112,6 +148,18 @@ void ImmutableEdgecutFragment::WriteStorage(InStorage &inStorage, FILE *fin) {
   bool status = fwrite(inStorage.GetBuffer(), 1, length, fin);
   if (!status) { LOG(ERROR) << "Serialize operation failed."; }
   fflush(fin);
+}
+
+void ImmutableEdgecutFragment::ReadStorage(OutStorage &outStorage, FILE *fin) {
+  size_t length;
+  bool status = fscanf(fin, "%zu", &length);
+  if (!status) { LOG(ERROR) << "Read serialize file failed."; }
+
+  char *buf = new char[length];
+  fseek(fin, 1, SEEK_CUR);
+  status = fread(buf, 1, length, fin);
+  if (!status) { LOG(ERROR) << "Read serialize file failed."; }
+  outStorage.SetBuf(buf, length);
 }
 
 }  // namespace graph

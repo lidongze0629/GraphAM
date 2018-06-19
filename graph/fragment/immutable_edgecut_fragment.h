@@ -9,6 +9,7 @@
 #include "graph/graph_spec.h"
 #include "graph/iterator_pair.h"
 #include "graph/utils.h"
+#include "graph/utils/OutStorage.h"
 
 namespace graph {
 
@@ -75,7 +76,11 @@ class ImmutableEdgecutFragment : public IFragment {
 
   void Serialize(const String &prefix);
 
+  void Deserialize(const String &prefix);
+
   void WriteStorage(InStorage &inStorage, FILE *fin);
+
+  void ReadStorage(OutStorage &outStorage, FILE *fin);
 
  private:
   void InitVertices(Vector<Vertex> &vertices);

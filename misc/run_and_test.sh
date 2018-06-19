@@ -23,7 +23,7 @@ get-graph-data(){
   if [[ -d ${GRAPH_DATA} ]]
   then
     cd ${GRAPH_DATA}
-    #git pull
+    git pull
     cd -
   else
     git clone --depth=1 https://github.com/lidongze0629/graph-data.git ${GRAPH_DATA}
@@ -36,7 +36,7 @@ get-graph-data(){
 
 
 run-test(){
-    cmd="./graph-engine --command_file ../misc/batch_file.simple"
+    cmd="./graph-engine --command_file ../misc/batch_file"
     echo $cmd
     eval $cmd
 }

@@ -4,5 +4,6 @@
 #include "gflags/gflags.h"
 
 DECLARE_string(command_file);
+DECLARE_bool(serialize);
 
 #endif  // GRAPH_FLAGS_H_

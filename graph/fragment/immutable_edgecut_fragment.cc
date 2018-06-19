@@ -70,4 +70,48 @@ void ImmutableEdgecutFragment::InitEdges(Vector<Edge> &edges) {
         [](const Edge &e1, const Edge &e2) { return e1.dst() < e2.dst(); });
   }
 }
+
+void ImmutableEdgecutFragment::Serialize(const String &prefix) {
+
+  String serialize_filename = prefix + "/_serialize";
+
+  FILE *fin = fopen(serialize_filename.c_str(), "w");
+  if (!fin) {LOG(ERROR) << "Open serialize file failed. "; }
+
+  InStorage is;
+  is << vlist_;
+  this->WriteStorage(is, fin);
+  is.Clear();
+
+  is << ie_;
+  this->WriteStorage(is, fin);
+  is.Clear();
+
+  is << oe_;
+  this->WriteStorage(is, fin);
+  is.Clear();
+
+  is << ieoffset_;
+  this->WriteStorage(is, fin);
+  is.Clear();
+
+  is << oeoffset_;
+  this->WriteStorage(is, fin);
+  is.Clear();
+
+  is << tvnum_;
+  this->WriteStorage(is, fin);
+  is.Clear();
+
+  fclose(fin);
+}
+
+void ImmutableEdgecutFragment::WriteStorage(InStorage &inStorage, FILE *fin) {
+  size_t length = inStorage.BufferSize();
+  fprintf(fin, "%zu ", length);
+  bool status = fwrite(inStorage.GetBuffer(), 1, length, fin);
+  if (!status) { LOG(ERROR) << "Serialize operation failed."; }
+  fflush(fin);
+}
+
 }  // namespace graph

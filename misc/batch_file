@@ -1,7 +1,7 @@
 ############################## Immutable Test ##################################
 # Load graph & app
-twitter_v = loadvfile("$GRAPH_TEST/twitter.v")
-twitter_e = loadefile("$GRAPH_TEST/twitter.e")
+twitter_v = loadvfile("$GRAPH_DATA/twitter.v")
+twitter_e = loadefile("$GRAPH_DATA/twitter.e")
 
 load_graph_strategy = loadstrategy("EVformat")
 
@@ -22,8 +22,8 @@ unloadapp(bfs)
 unloadgraph(twitter_v, twitter_e)
 
 # test wcc
-p2p-31_v = loadvfile("$GRAPH_TEST/p2p-31.v")
-p2p-31_e = loadefile("$GRAPH_TEST/p2p-31.e")
+p2p-31_v = loadvfile("$GRAPH_DATA/p2p-31.v")
+p2p-31_e = loadefile("$GRAPH_DATA/p2p-31.e")
 
 load_graph_strategy = loadstrategy("EVformat")
 wcc = loadalgorithm("$GRAPH_LIB/libapp_wcc.so")
@@ -34,8 +34,8 @@ unloadapp(wcc)
 unloadgraph(p2p-31_v, p2p-31_e)
 
 # test mst
-test_v = loadvfile("$GRAPH_TEST/test.v")
-test_e = loadefile("$GRAPH_TEST/test.e")
+test_v = loadvfile("$GRAPH_DATA/test.v")
+test_e = loadefile("$GRAPH_DATA/test.e")
 
 load_graph_strategy = loadstrategy("EVformat")
 mst_prim = loadalgorithm("$GRAPH_LIB/libapp_mst_prim.so")

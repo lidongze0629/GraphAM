@@ -36,7 +36,7 @@ get-graph-data(){
 
 
 run-test(){
-    cmd="./graph-engine --command_file ../misc/batch_file"
+    cmd="./graph-engine --command_file ../misc/batch_file.simple"
     echo $cmd
     eval $cmd
 }

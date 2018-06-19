@@ -16,6 +16,9 @@ void EVFragmentLoader::LoadFragment(unique_ptr<IFragment> &fragment,
 
   fragment = FragmentFactory::CreateFragment(graph_spec);
   fragment->Init(vertices, edges);
+  if (FLAGS_serialize) {
+    fragment->Serialize(graph_spec.graph_name());
+  }
 }
 
 void EVFragmentLoader::LoadVfile(Vector<Vertex> &vertices,

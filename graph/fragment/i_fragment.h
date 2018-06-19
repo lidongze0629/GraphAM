@@ -106,6 +106,8 @@ class IFragment {
   virtual void SetPResult(const Vertex &v, const double &r) = 0;
 
   virtual double GetPResult(const vid_t lid) = 0;
+
+  virtual void Serialize(const String &prefix) = 0;
 };
 }  // namespace graph
 #endif  // GRAPH_FRAGMENT_I_FRAGMENT_H_

@@ -14,6 +14,7 @@ class GraphSpec {
     load_strategy_ = "";
     algo_dynamic_lib_ = "";
     query_ = "";
+    graph_name_ = "";
   }
 
   /** Constructor.
@@ -23,12 +24,13 @@ class GraphSpec {
    * @param edge_file he location of edge file.
    */
   GraphSpec(String loadStrategy, String vertex_file, String edge_file,
-            String algoDynamicLib, String query)
+            String algoDynamicLib, String query, String graph_name)
       : vertex_file_(vertex_file),
         edge_file_(edge_file),
         load_strategy_(loadStrategy),
         algo_dynamic_lib_(algoDynamicLib),
-        query_(query) {}
+        query_(query),
+        graph_name_(graph_name) {}
 
   /** Default destructor. */
   ~GraphSpec() {}
@@ -45,12 +47,15 @@ class GraphSpec {
 
   inline const String &algo_dynamic_lib() const { return algo_dynamic_lib_; }
 
+  inline const String &graph_name() const { return graph_name_; }
+
  private:
   String vertex_file_;
   String edge_file_;
   String load_strategy_;  // ADJ or EVR SNAP
   String algo_dynamic_lib_;
   String query_;
+  String graph_name_;
 };
 }  // namespace graph
 

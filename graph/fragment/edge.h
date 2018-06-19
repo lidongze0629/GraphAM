@@ -2,8 +2,12 @@
 #define GRAPH_FRAGMENT_EDGE_H
 
 #include "graph/utils.h"
+#include "graph/utils/InStorage.h"
 
 namespace graph {
+
+class InStorage;
+
 class Edge {
  public:
   /** Default constructor **/
@@ -41,11 +45,18 @@ class Edge {
 
   friend std::ostream &operator<<(std::ostream &out, const Edge &e);
   friend std::istream &operator>>(std::istream &in, const Edge &e);
+
+  friend InStorage &operator<<(InStorage &inStorage, const Edge &e);
 };
 
 inline std::ostream &operator<<(std::ostream &out, const Edge &e) {
   out << e.src() << "->" << e.dst() << "(" << e.getData() << ")";
   return out;
+}
+
+inline InStorage &operator<<(InStorage &inStorage, const Edge &e) {
+  inStorage << e.src_<< e.dst_ << e.data_;
+  return inStorage;
 }
 }
 

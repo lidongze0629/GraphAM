@@ -1,0 +1,20 @@
+############################## Immutable Test ##################################
+# Load graph & app
+twitter_v = loadvfile("$GRAPH_DATA/twitter.v")
+twitter_e = loadefile("$GRAPH_DATA/twitter.e")
+
+load_graph_strategy = loadstrategy("EVformat")
+
+# test sssp pagerank sssp bfs
+sssp = loadalgorithm("$GRAPH_LIB/libapp_sssp.so")
+
+# query
+sssp.query(4, "sssp")
+
+# unload app & graph
+unloadapp(sssp)
+unloadgraph(twitter_v, twitter_e)
+
+#-------------------------------------------------------------------------------
+# Finally exit
+exit

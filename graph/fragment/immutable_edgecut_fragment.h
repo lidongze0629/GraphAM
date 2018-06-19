@@ -1,6 +1,8 @@
 #ifndef GRAPH_FRAGMENT_IMMUTABLE_EDGECUT_FRAGMENT_H_
 #define GRAPH_FRAGMENT_IMMUTABLE_EDGECUT_FRAGMENT_H_
 
+#include <fstream>
+
 #include "graph/fragment/edge.h"
 #include "graph/fragment/i_fragment.h"
 #include "graph/fragment/vertex.h"
@@ -70,6 +72,10 @@ class ImmutableEdgecutFragment : public IFragment {
   }
 
   double GetPResult(const vid_t lid) { return presult_on_vertex_.at(lid); }
+
+  void Serialize(const String &prefix);
+
+  void WriteStorage(InStorage &inStorage, FILE *fin);
 
  private:
   void InitVertices(Vector<Vertex> &vertices);

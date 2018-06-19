@@ -13,6 +13,8 @@ void GraphSpec::SetProperty(const String &key, const String &value) {
     algo_dynamic_lib_ = value;
   } else if (key == "query") {
     query_ = value;
+  } else if (key == "graph_name") {
+    graph_name_ = value;
   } else {
     LOG(ERROR) << "unsupport key_value pair.";
   }

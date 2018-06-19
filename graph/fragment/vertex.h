@@ -1,9 +1,13 @@
 #ifndef GRAPH_FRAGMENT_VERTEX_H_
 #define GRAPH_FRAGMENT_VERTEX_H_
 
+#include "graph/utils/InStorage.h"
 #include "graph/utils.h"
 
 namespace graph {
+
+class InStorage;
+
 class Vertex {
  public:
   Vertex() {}
@@ -31,12 +35,21 @@ class Vertex {
 
   friend std::ostream &operator<<(std::ostream &out, const Vertex &v);
   friend std::istream &operator>>(std::istream &in, const Vertex &v);
+
+  friend InStorage &operator<<(InStorage &storagem, const Vertex &v);
 };
+
+inline InStorage &operator<<(InStorage &storage, const Vertex &v) {
+  storage << v.vid_;
+  storage << v.data_;
+  return storage;
+}
 
 inline std::ostream &operator<<(std::ostream &out, const Vertex &v) {
   out << v.vid() << "(" << v.getData() << ")";
   return out;
 }
-}
+
+} // namespace graph
 
 #endif  // GRAPH_FRAGMENT_VERTEX_H_

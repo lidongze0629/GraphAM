@@ -60,6 +60,7 @@ void Distributor::RunBatchFile(const String &line) {
       }
       worker_ptr_->graphSpec().SetProperty(
           "edge_file", ParseWithEnvironmentVariable(edge_path));
+      worker_ptr_->graphSpec().SetProperty("graph_name", edge_file.substr(0,edge_file.find('_')));
       load_graph_edges_.emplace(edge_file);
     }
   } else if (std::regex_match(line, matches, std::regex(RegexLoadStragety))) {

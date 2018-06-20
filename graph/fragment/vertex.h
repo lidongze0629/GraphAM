@@ -1,9 +1,9 @@
 #ifndef GRAPH_FRAGMENT_VERTEX_H_
 #define GRAPH_FRAGMENT_VERTEX_H_
 
+#include "graph/utils.h"
 #include "graph/utils/InStorage.h"
 #include "graph/utils/OutStorage.h"
-#include "graph/utils.h"
 
 namespace graph {
 
@@ -59,6 +59,6 @@ inline std::ostream &operator<<(std::ostream &out, const Vertex &v) {
   return out;
 }
 
-} // namespace graph
+}  // namespace graph
 
 #endif  // GRAPH_FRAGMENT_VERTEX_H_

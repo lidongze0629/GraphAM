@@ -16,7 +16,8 @@ class InStorage {
   inline void AddByte(char c) { buffer_.push_back(c); }
 
   inline void AddBytes(const void *begin, const int size) {
-    buffer_.insert(buffer_.end(), (const char *)begin, (const char *)begin + size);
+    buffer_.insert(buffer_.end(), (const char *)begin,
+                   (const char *)begin + size);
   }
 
   inline void Clear() { buffer_.clear(); }
@@ -59,6 +60,6 @@ inline InStorage &operator<<(InStorage &inStorage, const std::vector<T> &vect) {
   return inStorage;
 }
 
-} // namespace graph
+}  // namespace graph
 
-#endif // GRAPH_UTILS_INSTORAGE_H_
+#endif  // GRAPH_UTILS_INSTORAGE_H_

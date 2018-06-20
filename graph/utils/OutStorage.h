@@ -71,6 +71,6 @@ inline OutStorage &operator>>(OutStorage &outStorage, std::vector<T> &vect) {
   return outStorage;
 }
 
-} // namespace graph
+}  // namespace graph
 
-#endif // GRAPH_UTILS_OUTSTORAGE_H_
+#endif  // GRAPH_UTILS_OUTSTORAGE_H_

@@ -58,7 +58,7 @@ inline std::ostream &operator<<(std::ostream &out, const Edge &e) {
 }
 
 inline InStorage &operator<<(InStorage &inStorage, const Edge &e) {
-  inStorage << e.src_<< e.dst_ << e.data_;
+  inStorage << e.src_ << e.dst_ << e.data_;
   return inStorage;
 }
 
@@ -66,7 +66,6 @@ inline OutStorage &operator>>(OutStorage &outStorage, Edge &e) {
   outStorage >> e.src_ >> e.dst_ >> e.data_;
   return outStorage;
 }
-
 }
 
 #endif  // GRAPH_FRAGMENT_EDGE_H

@@ -8,7 +8,6 @@ namespace graph {
 
 void EVFragmentLoader::LoadFragment(unique_ptr<IFragment> &fragment,
                                     const GraphSpec &graph_spec) {
-
   fragment.reset();
 
   if (FLAGS_deserialize) {
@@ -31,7 +30,7 @@ void EVFragmentLoader::LoadFragment(unique_ptr<IFragment> &fragment,
 
 void EVFragmentLoader::LoadVfile(Vector<Vertex> &vertices,
                                  const String &vfile) {
-  LOG(INFO) << "Load vile \"" << vfile << "\"";
+  LOG(INFO) << "Load vfile \"" << vfile << "\"";
   FILE *fin = fopen(vfile.c_str(), "r");
   if (!fin) {
     LOG(ERROR) << "File " << vfile << " Open Failed.";
@@ -46,7 +45,7 @@ void EVFragmentLoader::LoadVfile(Vector<Vertex> &vertices,
 }
 
 void EVFragmentLoader::LoadEfile(Vector<Edge> &edges, const String &efile) {
-  LOG(INFO) << "Load eile \"" << efile << "\"";
+  LOG(INFO) << "Load efile \"" << efile << "\"";
   FILE *fin = fopen(efile.c_str(), "r");
   if (!fin) {
     LOG(ERROR) << "File " << efile << " Open Failed.";

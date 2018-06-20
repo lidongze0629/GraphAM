@@ -95,5 +95,5 @@ Verify sssp $GRAPH_DATA/twitter-sssp-4.dat sssp
 Verify bfs $GRAPH_DATA/twitter-bfs.dat bfs
 Verify mst $GRAPH_DATA/test-mst.dat prim_mst
 Verify wcc $GRAPH_DATA/p2p-31-wcc.dat wcc
-Verify pagerank $GRAPH_DATA/twitter-pagrank.dat pagerank
+Verify pagerank $GRAPH_DATA/twitter-pagerank.dat pagerank
 

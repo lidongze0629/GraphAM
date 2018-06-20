@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "graph/utils/exception.h"
 #include "graph/app/i_app.h"
 #include "graph/app/i_app_helper.h"
 #include "graph/distributor.h"

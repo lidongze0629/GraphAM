@@ -17,11 +17,6 @@ void worker::Start() {
 
   distributor_.Init(this);
   distributor_.ParseAndRunAlgorithmFromFile(FLAGS_command_file);
-
-  /*StartTime(RunAlgorithmTime); // this time include write result file
-  Query();
-  StopTime(RunAlgorithmTime);
-  worker_helper_.set_time_run_algorithm(GetTimer(RunAlgorithmTime));*/
 }
 
 void worker::LoadGraph() {
@@ -39,7 +34,8 @@ void worker::LoadAlgoDynamicLib(const String &app_name) {
       dlopen(graph_spec_.algo_dynamic_lib().c_str(), RTLD_LAZY);
 
   if (!dynamic_application) {
-    LOG(ERROR) << "load algo dynamic lib error: " << dlerror();
+    LOG(ERROR) << dlerror();
+    RAISE("load algo dynamic library error.");
   }
 
   // reset error

@@ -1,0 +1,49 @@
+############################## Immutable Test ##################################
+# Load graph & app
+twitter_v = loadvfile("$GRAPH_DATA/twitter.v")
+twitter_e = loadefile("$GRAPH_DATA/twitter.e")
+
+load_graph_strategy = loadstrategy("EVformat")
+
+# test sssp pagerank sssp bfs
+sssp = loadalgorithm("$GRAPH_LIB/libapp_sssp.dylib")
+pagerank = loadalgorithm("$GRAPH_LIB/libapp_pagerank.dylib")
+bfs = loadalgorithm("$GRAPH_LIB/libapp_bfs.dylib")
+
+# query
+pagerank.query(0.85 0.01 100 100000, "pagerank")
+sssp.query(4, "sssp")
+bfs.query(1 4, "bfs")
+
+# unload app & graph
+unloadapp(sssp)
+unloadapp(pagerank)
+unloadapp(bfs)
+unloadgraph(twitter_v, twitter_e)
+
+# test wcc
+p2p-31_v = loadvfile("$GRAPH_DATA/p2p-31.v")
+p2p-31_e = loadefile("$GRAPH_DATA/p2p-31.e")
+
+load_graph_strategy = loadstrategy("EVformat")
+wcc = loadalgorithm("$GRAPH_LIB/libapp_wcc.dylib")
+wcc.query(, "wcc")
+
+# unload app & graph
+unloadapp(wcc)
+unloadgraph(p2p-31_v, p2p-31_e)
+
+# test mst
+test_v = loadvfile("$GRAPH_DATA/test.v")
+test_e = loadefile("$GRAPH_DATA/test.e")
+
+load_graph_strategy = loadstrategy("EVformat")
+mst_prim = loadalgorithm("$GRAPH_LIB/libapp_mst_prim.dylib")
+mst_prim.query(, "mst")
+
+unloadapp(mst_prim)
+unloadgraph(test_v, test_e)
+
+#-------------------------------------------------------------------------------
+# Finally exit
+exit

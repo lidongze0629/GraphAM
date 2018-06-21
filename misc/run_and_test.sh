@@ -13,6 +13,8 @@ help(){
     exit
 }
 
+SYSTEM=`uname -o`
+
 get-graph-data(){
   if [[ -z "$GRAPH_DATA" ]]
   then
@@ -34,9 +36,13 @@ get-graph-data(){
   export GRAPH_LIB=.
 }
 
-
 run-test(){
-    cmd="./graph-engine --command_file ../misc/batch_file --serialize=false --deserialize=false"
+    cmd=""
+    if [ "$SYSTEM" = "Darwin" ]; then
+        cmd="./graph-engine --command_file ../misc/batch_file.mac --serialize=false --deserialize=false"
+    else
+        cmd="./graph-engine --command_file ../misc/batch_file --serialize=false --deserialize=false"
+    fi
     echo $cmd
     eval $cmd
 }
